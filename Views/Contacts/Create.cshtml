@@ -1,0 +1,60 @@
+﻿@model ContactsManagement.Models.Contact
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create a new Contact</h2>
+
+<h4>Contact</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-controller="Contacts" asp-action="Create">
+            @await Html.PartialAsync("_PartialContact", Model)
+            @*
+                <form method="post">
+                    <div id="divCont">
+                        <div><input type="text" name="txttest" style="width:200px;" /><input type="button" onclick="AddTextBox()" value="Add" /></div>
+                    </div><br />
+
+                </form>
+
+            *@
+
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to Contact's List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+@*
+    <script>
+
+        function GetDynamicTextBox(value) {
+            return '<input type="text" name="txttest" style="width:200px;"/><input type="button" onclick="RemoveTextBox(this)" value="Remove" />';
+        }
+
+        function AddTextBox() {
+            var div = document.createElement('DIV');
+            div.innerHTML = GetDynamicTextBox("");
+            document.getElementById("divCont").appendChild(div);
+        }
+
+        function RemoveTextBox(div) {
+            document.getElementById("divCont").removeChild(div.parentNode);
+        }
+
+    </script>
+*@

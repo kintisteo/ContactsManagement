@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Contact>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Contact List";
+}
+
+
+<h2>Contact List</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>Phone</th>
+            <th>Phone2</th>
+            <th>Phone3</th>
+            <th>&nbsp;</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var contact in Model)
+        {
+        <tr>
+            <td>@contact.FirstName</td>
+            <td>@contact.LastName</td>
+            <td>@contact.Email</td>
+            <td>@contact.Address</td>
+            <td>@contact.Phone</td>
+            <td>@contact.Phone2</td>
+            <td>@contact.Phone3</td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@contact.ContactId" class="btn btn-primary">Edit</a>
+                <a onclick="return confirm('Proceed to delete page?');" asp-action="Delete" asp-route-id="@contact.ContactId" class="btn btn-danger">Delete</a>
+
+                @*
+            <a class="btn btn-danger delete"
+               data-id="@contact.ContactId"
+               data-controller="Contacts"
+               data-action="Destroy"
+               data-body-message="Are u sure to delete @contact.LastName?"
+               >Delete</a>
+                *@
+            </td>
+        </tr>
+                }
+            </tbody>
+        </table>
+        <p><a asp-controller="Contacts" asp-action="Create" class="btn btn-success">ADD A NEW CONTACT</a></p>
+
+
